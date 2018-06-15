@@ -1,0 +1,15 @@
+Code Summary
+
+I wanted to use Python to code this application, but as it needed to be opened in an HTML 
+page, JavaScript and jQuery were a better combo for its DOM manipulation. 
+
+I created the structure of the table first, using jQuery to append classes to the HTML divs
+and used CSS to construct the visual of the board, and the effects, such as hover over the column shows 
+the opaque color of the player's disc before placement, etc. by using event listeners to tell where you cursor is.
+As the player chooses a column to put their disc in, that spot would no longer be empty, and class name would need to be changed
+to reflect the disc in that spot; this is achieved by using the different event listeners: hover, click, leave.
+
+Lastly, there is a check for a winner who has 4 in a row at the diagonal, horizontal, vertical levels.
+Totals are gathered and at any point if player had 4 in a row, function returns that player as a win.
+
+

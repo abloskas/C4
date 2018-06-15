@@ -26,9 +26,9 @@ class Connect4 {
     }
 
     c4EventListeners(){
-        const board = $(this.selector);
+        const table = $(this.selector);
         const that = this;
-        function findLastEmptyCell(col){
+        function prevEmptyCell(col){
             const cells = $(`.col[data-col='${col}']`);
             for (let i = cells.length -1; i >= 0; i--){
                 const cell = $(cells[i]);
@@ -41,23 +41,23 @@ class Connect4 {
             
         }
 
-        board.on('mouseenter', '.col.empty', function(){
+        table.on('mouseenter', '.col.empty', function(){
             if (that.GameOver) return;
             const col = $(this).data('col');
-            const $lastEmptyCell = findLastEmptyCell(col);
+            const $lastEmptyCell = prevEmptyCell(col);
             $lastEmptyCell.addClass(`next-${that.player}`);
             // console.log(col);
         })
 
-        board.on('mouseleave', '.col', function(){
+        table.on('mouseleave', '.col', function(){
             $('.col').removeClass(`next-${that.player}`);
         })
 
-        board.on('click', '.col.empty', function(){
+        table.on('click', '.col.empty', function(){
             if (that.GameOver) return;
             const col = $(this).data('col');
             // const row = $(this).data('row');
-            const $lastEmptyCell = findLastEmptyCell(col);
+            const $lastEmptyCell = prevEmptyCell(col);
             $lastEmptyCell.removeClass(`empty next-${that.player}`);
             $lastEmptyCell.addClass(that.player);
             $lastEmptyCell.data('player', that.player);
