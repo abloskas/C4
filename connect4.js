@@ -36,8 +36,9 @@ class Connect4 {
                     return cell;
                 }
             }
-            return null;
             console.log(cells);
+            return null;
+            
         }
 
         board.on('mouseenter', '.col.empty', function(){
