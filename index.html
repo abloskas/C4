@@ -7,12 +7,24 @@
     <title>ConnectFour!</title>
     <link rel="stylesheet" href="stylesheets/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="javascript.js"></script>
+    <script>
+        $(document).ready(function(){
+            const email = "a.bloskas@yahoo.com";
+            console.log("Hi! If you are reading this, welcome!");
+            console.log(`Ashley Bloskas, email:${email}`);
+            const connect4 = new Connect4('#game_board')
+            
+        $('.btn').click(function(){
+            connect4.restartGame();
+        })
+
+    });
+    </script>
     <script src="connect4.js"></script>
 </head>
 <body>
     <h1>Let's Play Connect Four!</h1>
     <button class="btn">Start Over</button>
-    <div id="connect4"></div>
+    <div id="game_board"></div>
 </body>
 </html>

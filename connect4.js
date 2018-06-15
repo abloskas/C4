@@ -1,46 +1,46 @@
 class Connect4 {
     constructor(selector) {
-        this.ROWS = 6;
-        this.COLS = 7;
-        this.player = 'red';
+        this.GAME_ROWS = 6;
+        this.GAME_COLS = 7;
         this.selector = selector;
+        this.player = 'red';
         this.GameOver = false;
-        this.createGrid();
-        this.setupEventListeners();
+        this.createTable();
+        this.c4EventListeners();
     }
 
-    createGrid(){
-        const $board = $(this.selector);
-        $board.empty();
+    createTable(){
+        const table = $(this.selector);
+        table.empty();
         this.GameOver = false;
         this.player = 'red';
-        for (let row = 0; row < this.ROWS; row++){
+        for (let row = 0; row < this.GAME_ROWS; row++){
           const $row = $('<div>').addClass('row');
-        for (let col = 0; col < this.COLS; col++){
+        for (let col = 0; col < this.GAME_COLS; col++){
             const $col = $('<div>').addClass('col empty').attr('data-col', col).attr('data-row', row);
             $row.append($col);
         }
-        $board.append($row);
+        table.append($row);
     }
 
     }
 
-    setupEventListeners(){
-        const $board = $(this.selector);
+    c4EventListeners(){
+        const board = $(this.selector);
         const that = this;
         function findLastEmptyCell(col){
             const cells = $(`.col[data-col='${col}']`);
             for (let i = cells.length -1; i >= 0; i--){
-                const $cell = $(cells[i]);
-                if ($cell.hasClass('empty')){
-                    return $cell;
+                const cell = $(cells[i]);
+                if (cell.hasClass('empty')){
+                    return cell;
                 }
             }
             return null;
             console.log(cells);
         }
 
-        $board.on('mouseenter', '.col.empty', function(){
+        board.on('mouseenter', '.col.empty', function(){
             if (that.GameOver) return;
             const col = $(this).data('col');
             const $lastEmptyCell = findLastEmptyCell(col);
@@ -48,11 +48,11 @@ class Connect4 {
             // console.log(col);
         })
 
-        $board.on('mouseleave', '.col', function(){
+        board.on('mouseleave', '.col', function(){
             $('.col').removeClass(`next-${that.player}`);
         })
 
-        $board.on('click', '.col.empty', function(){
+        board.on('click', '.col.empty', function(){
             if (that.GameOver) return;
             const col = $(this).data('col');
             // const row = $(this).data('row');
@@ -86,7 +86,7 @@ class Connect4 {
            let i = row + direction.i;
            let j = col + direction.j; 
            let $next = $getCell(i, j);
-           while (i >= 0 && i < that.ROWS && j >=0 && j < that.COLS && $next.data('player') === that.player){
+           while (i >= 0 && i < that.GAME_ROWS && j >=0 && j < that.GAME_COLS && $next.data('player') === that.player){
             total++;
             i += direction.i;
             j += direction.j;
@@ -138,6 +138,6 @@ class Connect4 {
     }
 
     restartGame(){
-        this.createGrid();
+        this.createTable();
     }
 }

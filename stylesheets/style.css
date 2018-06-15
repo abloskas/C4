@@ -1,10 +1,10 @@
 body{
     text-align: center;
 }
-#connect4{
+#game_board{
     background-color: rgb(116, 166, 223);
     padding: 10px;
-    border: 7px solid black;
+    border: 7px solid grey;
     border-radius: 10px;
     border-style: groove;
     display: inline-block;
